@@ -2,7 +2,7 @@
   <div>
     <h1>Aitken Neville Interpolation</h1>
     <label>Evaluate at: </label>
-    <input v-model="evalPointX"/>
+    <input v-model.number="evalPointX" type="number"/>
 
     <br><br>
 
@@ -17,8 +17,8 @@
         <td>{{i}}</td>
         <template v-for="k in nPoints">
           <td v-if="k == 1" :key="k">
-            <input v-model="points[i-1].x" placeholder="x" class="input-coord"/>
-            <input v-model="points[i-1].y" placeholder="y" class="input-coord"/>
+            <input v-model.number="points[i-1].x" placeholder="x" type="number" class="input-coord"/>
+            <input v-model.number="points[i-1].y" placeholder="y" type="number" class="input-coord"/>
           </td>
           <td v-if="k != 1" :key="k">
             <vue-mathjax :formula="'$$' + solver.getResultString(i-1, k-1) + ' = ' + solver.getResult(i-1, k-1) + '$$'"></vue-mathjax>
@@ -101,7 +101,7 @@ tr > td:first-child {
 }
 
 .input-coord {
-  width: 30px; 
+  width: 50px; 
   text-align: center ;
 }
 

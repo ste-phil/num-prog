@@ -79,4 +79,9 @@ export default class NewtonSolver {
     public getGeneralPolynomial() {
         return this.generalPolynomial;
     }
+
+    public getPolynomial(x: number): [string, number] {
+        const p = this.generalPolynomial.replaceAll("x", x + "");
+        return [p, eval(p)];
+    }
 }

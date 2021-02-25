@@ -2,7 +2,7 @@
   <div>
     <h1>Newton Interpolation</h1>
     <label>Evaluate at: </label>
-    <input v-model="evalPointX"/>
+    <input v-model.number="evalPointX"/>
 
     <br><br>
 
@@ -17,8 +17,8 @@
         <td>{{i}}</td>
         <template v-for="k in nPoints">
           <td v-if="k == 1" :key="k">
-            <input v-model="points[i-1].x" placeholder="x" class="input-coord"/>
-            <input v-model="points[i-1].y" placeholder="y" class="input-coord"/>
+            <input v-model.number="points[i-1].x" placeholder="x" class="input-coord"/>
+            <input v-model.number="points[i-1].y" placeholder="y" class="input-coord"/>
           </td>
           <td v-if="k != 1" :key="k">
             <vue-mathjax :formula="'$$' + solver.getResultString(i-1, k-1) + ' = ' + solver.getResult(i-1, k-1) + '$$'"></vue-mathjax>
@@ -32,8 +32,11 @@
 
     <br>
     <br>
-    <p>Polynomial</p>
+    <p>General Polynomial</p>
     <vue-mathjax :formula="'$$' + solver.getGeneralPolynomial() + '$$'"></vue-mathjax>
+
+    <p :data="p = solver.getPolynomial(evalPointX)" >Polynomial at x = {{evalPointX}}</p>
+    <vue-mathjax :formula="'$$' + p[0] + ' = ' + p[1] + '$$'"></vue-mathjax>
   </div>
 </template>
 
@@ -106,7 +109,7 @@ tr > td:first-child {
 }
 
 .input-coord {
-  width: 30px; 
+  width: 50px; 
   text-align: center ;
 }
 

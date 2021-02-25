@@ -20,6 +20,8 @@ export default class AitkenNevilleSolver {
     }
 
     public solve(evalPointX: number) {
+        evalPointX *= 1;
+
         this.initAndReset();
         for(let k = 1; k < this.points.length; k++) {
             this.solveK(evalPointX, k);
@@ -41,10 +43,6 @@ export default class AitkenNevilleSolver {
             if (k >= this.evaluatedPoints.length) this.evaluatedPoints.push(new Array<Result>(iters));
             this.evaluatedPoints[k][i] = new Result(res, resString);
         }
-    }
-
-    public get getISize() {
-        return this.points.length;
     }
 
     public getResult(i: number, k: number) {
