@@ -51,10 +51,10 @@ export default class NewtonSolver {
     }
 
     private constructPolynomial() {
-        for (let k = 1; k < this.points.length; k++) {
+        for (let k = 0; k < this.points.length; k++) {
             this.generalPolynomial += this.evaluatedPoints[k][0].result;
 
-            for (let i = 1; i < k; i++) { 
+            for (let i = 0; i < k; i++) { 
                 this.generalPolynomial += " * (x - " + this.points[i].x + ")"; 
             }
 
