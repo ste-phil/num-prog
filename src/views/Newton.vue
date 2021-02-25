@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Aitken Neville Interpolation</h1>
+    <h1>Newton Interpolation</h1>
     <label>Evaluate at: </label>
     <input v-model="evalPointX"/>
 
@@ -29,12 +29,17 @@
 
     <br>
     <button @click="addPoint()">+</button>
+
+    <br>
+    <br>
+    <p>Polynomial</p>
+    <vue-mathjax :formula="'$$' + solver.getGeneralPolynomial() + '$$'"></vue-mathjax>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import AitkenNevilleSolver from '@/logic/linear-interpolation/AitkenNevilleSolver.ts';
+import NewtonSolver from '@/logic/linear-interpolation/NewtonSolver.ts';
 import Point from '@/logic/linear-interpolation/entities/Point.ts';
 import VueMathjax from '@/components/vue-mathjax.vue';
 
@@ -43,14 +48,14 @@ import VueMathjax from '@/components/vue-mathjax.vue';
     VueMathjax
   },
 })
-export default class AitkenNeville extends Vue {
-  private solver: AitkenNevilleSolver;
+export default class Newton extends Vue {
+  private solver: NewtonSolver;
   private evalPointX = 5.0;
   private points: Point[] = new Array<Point>(new Point(6, 2), new Point(4, 2), new Point(2, 3));
   
   constructor() {
     super();
-    this.solver = new AitkenNevilleSolver(this.points, this.evalPointX);
+    this.solver = new NewtonSolver(this.points, this.evalPointX);
   }
 
   public get nPoints() {

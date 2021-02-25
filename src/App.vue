@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/AitkenNeville">Aitken-Neville</router-link>
+      <router-link to="/Newton">Newton-Interpolation</router-link>
     </div>
     <router-view id="content"/>
   </div>
