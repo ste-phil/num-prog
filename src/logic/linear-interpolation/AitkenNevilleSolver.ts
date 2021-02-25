@@ -38,7 +38,7 @@ export default class AitkenNevilleSolver {
             const xi = this.points[i].x;
             
             const res = pik1 + ((evalPointX - xi) / (xik - xi)) * (pi1k1 - pik1);
-            const resString = pik1 + " + \\frac{" + evalPointX  + " - " + xi + "}{" + xik + " - " + xi  + "} * (" + pi1k1 + " - " + pik1 + ")";
+            const resString = pik1 + " + \\frac{" + evalPointX  + " - " + xi + "}{" + xik + " - " + xi  + "} \\cdot (" + pi1k1 + " - " + pik1 + ")";
 
             if (k >= this.evaluatedPoints.length) this.evaluatedPoints.push(new Array<Result>(iters));
             this.evaluatedPoints[k][i] = new Result(res, resString);

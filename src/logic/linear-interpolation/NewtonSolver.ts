@@ -40,10 +40,7 @@ export default class NewtonSolver {
             const xik = this.points[i+k].x;
             
             const res = (ci1k1 - cik1) / (xik - xi);
-            const resString = "\\frac{(" + ci1k1 + "-" + cik1  + ")}{(" + xik + " - " + xi + ")}";
-
-
-           
+            const resString = "\\frac{" + ci1k1 + "-" + cik1  + "}{" + xik + " - " + xi + "}";
 
             if (k >= this.evaluatedPoints.length) this.evaluatedPoints.push(new Array<Result>(iters));
             this.evaluatedPoints[k][i] = new Result(res, resString);
@@ -55,7 +52,7 @@ export default class NewtonSolver {
             this.generalPolynomial += this.evaluatedPoints[k][0].result;
 
             for (let i = 0; i < k; i++) { 
-                this.generalPolynomial += " * (x - " + this.points[i].x + ")"; 
+                this.generalPolynomial += " \\cdot (x - " + this.points[i].x + ")"; 
             }
 
             if (k < this.points.length - 1)
@@ -82,6 +79,8 @@ export default class NewtonSolver {
 
     public getPolynomial(x: number): [string, number] {
         const p = this.generalPolynomial.replaceAll("x", x + "");
-        return [p, eval(p)];
+        const pEval = p.replaceAll("\\cdot", "*");
+
+        return [p, eval(pEval)];
     }
 }
